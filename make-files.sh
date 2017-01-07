@@ -15,7 +15,7 @@ master_list:
 - $MASTER_02
 - $MASTER_03
 - $MASTER_04
-resolvers: 
+resolvers:
 - 8.8.4.4
 - 8.8.8.8
 FIN
@@ -35,7 +35,7 @@ mkdir /tmp/dcos && cd /tmp/dcos
 printf "Waiting for installer to appear at Bootstrap URL"
 until \$(curl -m 2 --connect-timeout 2 --output /dev/null --silent --head --fail http://$BOOTSTRAP:4040/dcos_install.sh); do
     sleep 1
-done           
+done
 curl -O http://$BOOTSTRAP:4040/dcos_install.sh
 sudo bash dcos_install.sh \$1
 FIN

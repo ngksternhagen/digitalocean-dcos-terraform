@@ -4,7 +4,7 @@ provider "digitalocean" {
 
 resource "digitalocean_droplet" "dcos_bootstrap" {
   name = "${format("${var.dcos_cluster_name}-bootstrap-%02d", count.index)}"
-  
+
   image = "coreos-stable"
   size             = "${var.boot_size}"
     ssh_keys = ["${var.ssh_key_fingerprint}"]
@@ -24,7 +24,7 @@ resource "digitalocean_droplet" "dcos_bootstrap" {
   }
   provisioner "local-exec" {
     command = "echo CLUSTER_NAME=\"${var.dcos_cluster_name}\" >> ips.txt"
-  }  
+  }
   provisioner "remote-exec" {
   inline = [
     "wget -q -O dcos_generate_config.sh -P $HOME ${var.dcos_installer_url}",
